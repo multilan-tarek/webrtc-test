@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+</head>
+<body>
+
+<h4>Step 1: Set IDs (do this on both sides)</h4>
+
+<label for="your-id">Your ID:</label>
+<input type="text" id="your-id">
+
+<label for="peer-id">Peer ID:</label>
+<input type="text" id="peer-id">
+
+<button onclick="saveIds();">Save IDs</button>
+
+<br>
+<br>
+
+<h4>Step 2: Connect to peer</h4>
+<button onclick="connect();">Connect</button>
+
+<br>
+<br>
+
+<h4>Step 3: Call</h4>
+<button onclick="call();">Call</button>
+
+<audio id="audio"></audio>
+
+<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+<script src="./peer.js"></script>
+
+</body>
+</html>
