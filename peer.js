@@ -23,6 +23,9 @@ function call() {
         getUserMedia({video: true, audio: true}, function (stream) {
             let call = peer.call(peer_id, stream);
             call.on('stream', function (remoteStream) {
+                let audio = document.getElementById('audio');
+                audio.srcObject = remoteStream;
+                audio.play();
                 console.log("Call ongoing with " + peer_id)
             });
         }, function (err) {
@@ -49,15 +52,11 @@ function saveIds() {
         console.log("Call incoming")
 
         getUserMedia({video: true, audio: true}, function (stream) {
-
             call.answer(stream);
-            let audio1 = document.getElementById('audio1');
-            audio1.srcObject = stream;
-            audio1.play();
             call.on('stream', function (remoteStream) {
-                let audio2 = document.getElementById('audio1');
-                audio2.srcObject = remoteStream;
-                audio2.play();
+                let audio = document.getElementById('audio');
+                audio.srcObject = remoteStream;
+                audio.play();
                 console.log("Call answered")
             });
 
