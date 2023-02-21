@@ -7,6 +7,7 @@ let peer;
 function connect() {
     if (peer) {
         conn = peer.connect(peer_id);
+        console.log(conn)
 
         conn.on('open', function () {
             console.log("Connection opened to " + peer_id)
@@ -50,10 +51,13 @@ function saveIds() {
         getUserMedia({video: true, audio: true}, function (stream) {
 
             call.answer(stream);
+            let audio1 = document.getElementById('audio1');
+            audio1.srcObject = stream;
+            audio1.play();
             call.on('stream', function (remoteStream) {
-                let audio = document.getElementById('audio');
-                audio.srcObject = remoteStream;
-                audio.play();
+                let audio2 = document.getElementById('audio1');
+                audio2.srcObject = remoteStream;
+                audio2.play();
                 console.log("Call answered")
             });
 
