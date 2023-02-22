@@ -1,7 +1,7 @@
 let your_id;
 let peer_id;
 let conn;
-let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+let getUserMedia = navigator.getUserMedia || navigator.MediaDevices.getUserMedia() || navigator.mozGetUserMedia;
 let peer;
 
 function connect() {
@@ -28,6 +28,12 @@ function call() {
                 audio.play();
                 console.log("Call ongoing with " + peer_id)
             });
+            call.on("close", function () {
+                    audio.pause()
+                    call.close()
+                    conn.close()
+
+                })
         }, function (err) {
             console.log('Failed to get local stream', err);
         });
